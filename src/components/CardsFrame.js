@@ -1,11 +1,20 @@
 import { Grid, Box, IconButton } from "@mui/material";
 import ArrowCircleLeft from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRight from "@mui/icons-material/ArrowCircleRight";
+import { theme } from "../themes/theme";
 
 const styles = {
   root: {
     display: "grid",
-    grid: "1fr / 60px 1fr 60px",
+    grid: "200px / 60px calc(100% - 120px) 60px",
+    placeItems: "center",
+  },
+  contentWrap: {
+    display: "flex",
+    width: "100%",
+    gap: 2,
+    height: "100%",
+    flexWrap: "wrap",
   },
 };
 
@@ -16,7 +25,7 @@ const CardsFrame = (props) => {
       <IconButton disabled={disabled === "prev"} onClick={prev} size="large">
         <ArrowCircleLeft />
       </IconButton>
-      <Box>
+      <Box sx={styles.contentWrap}>
         {Array.isArray(children) ? children.map((child) => child) : children}
       </Box>
       <IconButton size="large" disabled={disabled === "next"} onClick={next}>

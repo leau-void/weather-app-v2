@@ -1,11 +1,4 @@
-import {
-  useContext,
-  useRef,
-  useState,
-  useCallback,
-  useReducer,
-  useEffect,
-} from "react";
+import { useContext, useRef, useState, useCallback, useEffect } from "react";
 import RadioButtonGroup from "./RadioButtonGroup";
 import unitOptions from "../utils/unitOptions";
 import DataContext from "../context/DataContext";
