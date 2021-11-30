@@ -1,5 +1,5 @@
 const API =
-  "http://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=9602719e47f870b7daf0ea57e5379f09&cnt=40";
+  "https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=9602719e47f870b7daf0ea57e5379f09&cnt=40";
 
 const get = () => {
   const getInfo = { method: "GET" };

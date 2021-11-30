@@ -31,7 +31,7 @@ function App() {
         {weatherData ? (
           <WeatherInfo refreshData={refreshData} />
         ) : currentError ? (
-          <ErrorPage error={currentError} />
+          <ErrorPage error={currentError} refreshData={refreshData} />
         ) : (
           <Loading />
         )}
