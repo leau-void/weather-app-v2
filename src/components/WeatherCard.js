@@ -1,5 +1,6 @@
 const WeatherCard = (props) => {
-  return <div>card</div>;
+  const { data } = props;
+  return <div>{JSON.stringify(data)}</div>;
 };
 
 export default WeatherCard;

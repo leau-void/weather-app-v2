@@ -3,17 +3,14 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   typography: {
     fontFamily: "Open Sans, sans-serif",
-    fontSize: "100%",
-  },
-  overrides: {
-    MuiInput: {
-      input: {
-        fontWeight: "bold",
-      },
+    fontSize: 16,
+
+    h1: {
+      fontSize: 26,
     },
   },
-  palette: {
-    primary: { main: "#3A8DFF" },
-    secondary: { main: "#B0B0B0" },
-  },
+  // palette: {
+  //   primary: { main: "" },
+  //   secondary: { main: "" },
+  // },
 });
