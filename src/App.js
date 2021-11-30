@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import weatherService from "./services/weather.service";
 import Loading from "./components/Loading";
@@ -11,20 +11,25 @@ import ErrorPage from "./components/ErrorPage";
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [currentError, setCurrentError] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
     weatherService
       .get()
       .then((result) => setWeatherData(result.list))
       .catch((error) => setCurrentError(error));
+  }, [refresh]);
+
+  const refreshData = useCallback(() => {
+    setWeatherData(null);
+    setRefresh((prev) => prev + 1);
   }, []);
 
-  console.log(weatherData);
   return (
     <ThemeProvider theme={theme}>
       <DataProvider value={weatherData}>
         {weatherData ? (
-          <WeatherInfo />
+          <WeatherInfo refreshData={refreshData} />
         ) : currentError ? (
           <ErrorPage error={currentError} />
         ) : (

@@ -12,24 +12,30 @@ import DataContext from "../context/DataContext";
 import isMobile from "../utils/isMobile";
 import CardsFrame from "./CardsFrame";
 import WeatherCard from "./WeatherCard";
+import { Grid, IconButton } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const styles = {
   root: {
     width: "100%",
     height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+  },
+  topBar: {
+    display: "grid",
+    grid: "1fr / 1fr auto ",
+    placeItems: "center center",
   },
   radioButtons: {
     fontSize: "1.5rem",
     alignItems: "center",
-    width: "100%",
     textAlign: "center",
   },
+  refreshButton: {},
 };
 
-const WeatherInfo = () => {
+const WeatherInfo = (props) => {
+  const { refreshData } = props;
+
   const [unit, setUnit] = useState("c");
   const [page, setPage] = useState(0);
   const data = useContext(DataContext);
@@ -37,7 +43,6 @@ const WeatherInfo = () => {
   const pageSize = useRef(isMobile ? 1 : 3);
 
   useEffect(() => {
-    console.log("page");
     const pages = [];
     for (let i = 0; i < Math.ceil(data.length / pageSize.current); i++) {
       const startI = i * pageSize.current;
@@ -57,21 +62,31 @@ const WeatherInfo = () => {
   }, [pagedData]);
 
   return (
-    <div>
-      <RadioButtonGroup
-        title="Units"
-        value={unit}
-        setValue={setUnit}
-        options={unitOptions}
-        sx={styles.radioButtons}
-      />
-      <CardsFrame next={nextPage} prev={prevPage}>
+    <Grid sx={styles.root}>
+      <Grid sx={styles.topBar}>
+        <RadioButtonGroup
+          title="Units"
+          value={unit}
+          setValue={setUnit}
+          options={unitOptions}
+          sx={styles.radioButtons}
+        />
+        <IconButton onClick={refreshData} size="large">
+          <RefreshIcon />
+        </IconButton>
+      </Grid>
+      <CardsFrame
+        disabled={
+          page === 0 ? "prev" : page === pagedData.length - 1 ? "next" : ""
+        }
+        next={nextPage}
+        prev={prevPage}>
         {pagedData[0] &&
           pagedData[page].map((data) => (
             <WeatherCard key={data.dt} data={data} />
           ))}
       </CardsFrame>
-    </div>
+    </Grid>
   );
 };
 
