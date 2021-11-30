@@ -1,6 +1,6 @@
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
+import { CardHeader, CardContent } from "@mui/material";
+import Temperature from "./Temperature";
 
 const styles = {
   root: {
@@ -14,7 +14,10 @@ const WeatherCard = (props) => {
   const { data } = props;
   return (
     <Card sx={styles.root} variant="outlined">
-      <CardContent>{JSON.stringify(data)}</CardContent>
+      <CardContent>
+        {JSON.stringify(data)}
+        <Temperature>272.15</Temperature>
+      </CardContent>
     </Card>
   );
 };

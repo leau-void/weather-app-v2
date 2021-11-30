@@ -7,6 +7,7 @@ import CardsFrame from "./CardsFrame";
 import WeatherCard from "./WeatherCard";
 import { Grid, IconButton } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { UnitProvider } from "../context/UnitContext";
 
 const styles = {
   root: {
@@ -55,31 +56,33 @@ const WeatherInfo = (props) => {
   }, [pagedData]);
 
   return (
-    <Grid sx={styles.root}>
-      <Grid sx={styles.topBar}>
-        <RadioButtonGroup
-          title="Units"
-          value={unit}
-          setValue={setUnit}
-          options={unitOptions}
-          sx={styles.radioButtons}
-        />
-        <IconButton onClick={refreshData} size="large">
-          <RefreshIcon />
-        </IconButton>
+    <UnitProvider value={unit}>
+      <Grid sx={styles.root}>
+        <Grid sx={styles.topBar}>
+          <RadioButtonGroup
+            title="Units"
+            value={unit}
+            setValue={setUnit}
+            options={unitOptions}
+            sx={styles.radioButtons}
+          />
+          <IconButton onClick={refreshData} size="large">
+            <RefreshIcon />
+          </IconButton>
+        </Grid>
+        <CardsFrame
+          disabled={
+            page === 0 ? "prev" : page === pagedData.length - 1 ? "next" : ""
+          }
+          next={nextPage}
+          prev={prevPage}>
+          {pagedData[0] &&
+            pagedData[page].map((data) => (
+              <WeatherCard key={data.dt} data={data} />
+            ))}
+        </CardsFrame>
       </Grid>
-      <CardsFrame
-        disabled={
-          page === 0 ? "prev" : page === pagedData.length - 1 ? "next" : ""
-        }
-        next={nextPage}
-        prev={prevPage}>
-        {pagedData[0] &&
-          pagedData[page].map((data) => (
-            <WeatherCard key={data.dt} data={data} />
-          ))}
-      </CardsFrame>
-    </Grid>
+    </UnitProvider>
   );
 };
 
