@@ -5,7 +5,7 @@ import DataContext from "../context/DataContext";
 import isMobile from "../utils/isMobile";
 import CardsFrame from "./CardsFrame";
 import WeatherCard from "./WeatherCard";
-import { Grid, IconButton } from "@mui/material";
+import { Grid, IconButton, AppBar } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { UnitProvider } from "../context/UnitContext";
 
@@ -18,13 +18,16 @@ const styles = {
     display: "grid",
     grid: "1fr / 1fr auto ",
     placeItems: "center center",
+    py: { xs: 1, sm: 2 },
   },
   radioButtons: {
     fontSize: "1.5rem",
     alignItems: "center",
     textAlign: "center",
   },
-  refreshButton: {},
+  refreshButton: {
+    mx: { xs: 2, sm: 4 },
+  },
 };
 
 const WeatherInfo = (props) => {
@@ -58,7 +61,7 @@ const WeatherInfo = (props) => {
   return (
     <UnitProvider value={unit}>
       <Grid sx={styles.root}>
-        <Grid sx={styles.topBar}>
+        <AppBar color="primary" position="relative" sx={styles.topBar}>
           <RadioButtonGroup
             title="Units"
             value={unit}
@@ -66,10 +69,10 @@ const WeatherInfo = (props) => {
             options={unitOptions}
             sx={styles.radioButtons}
           />
-          <IconButton onClick={refreshData} size="large">
-            <RefreshIcon />
+          <IconButton onClick={refreshData} sx={styles.refreshButton}>
+            <RefreshIcon color="secondary.dark" fontSize="large" />
           </IconButton>
-        </Grid>
+        </AppBar>
         <CardsFrame
           disabled={
             page === 0 ? "prev" : page === pagedData.length - 1 ? "next" : ""

@@ -9,8 +9,8 @@ export const theme = createTheme({
       fontSize: 26,
     },
   },
-  // palette: {
-  //   primary: { main: "" },
-  //   secondary: { main: "" },
-  // },
+  palette: {
+    primary: { main: "#89B5AF", light: "#96C7C1" },
+    secondary: { main: "#D0CAB2", light: "#DED9C4", dark: "#424242" },
+  },
 });

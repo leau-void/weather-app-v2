@@ -1,6 +1,5 @@
 import { Grid, Box, Button, Typography, Icon, Card } from "@mui/material";
 import { useEffect } from "react";
-import { theme } from "../themes/theme";
 import Error from "@mui/icons-material/Error";
 
 const styles = {
@@ -17,12 +16,10 @@ const styles = {
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing(4),
+    gap: { xs: 2, sm: 4 },
     alignItems: "center",
-    padding: theme.spacing(4),
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(4, 2),
-    },
+    py: { xs: 4 },
+    px: { xs: 2, sm: 4 },
   },
   icon: {
     fontSize: "4rem",

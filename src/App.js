@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./themes/theme";
 import { DataProvider } from "./context/DataContext";
 import ErrorPage from "./components/ErrorPage";
+import { CssBaseline } from "@mui/material";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <DataProvider value={weatherData}>
         {weatherData ? (
           <WeatherInfo refreshData={refreshData} />
