@@ -10,7 +10,7 @@ const Temperature = (props) => {
 
   return (
     <Typography component="span">
-      {unitConverter[unit](children) +
+      {Math.round(unitConverter[unit](children)) +
         unitOptions.find((option) => option.value === unit).symbol}
     </Typography>
   );

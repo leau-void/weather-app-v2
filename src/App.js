@@ -13,7 +13,7 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [currentError, setCurrentError] = useState(null);
   const [refresh, setRefresh] = useState(0);
-
+  console.log(weatherData);
   useEffect(() => {
     weatherService
       .get()

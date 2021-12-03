@@ -13,12 +13,14 @@ const RadioButtonGroup = (props) => {
 
   return (
     <FormControl sx={sx} component="fieldset">
-      <FormLabel component="legend">{title}</FormLabel>
+      <FormLabel color="text" component="legend">
+        {title}
+      </FormLabel>
       <RadioGroup row aria-label={title} value={value} onChange={handleChange}>
         {options.map((option, i) => (
           <FormControlLabel
             value={option.value}
-            control={<Radio />}
+            control={<Radio color="text" />}
             label={option.label}
             key={i}
           />
